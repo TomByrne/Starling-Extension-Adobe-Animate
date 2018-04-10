@@ -14,3 +14,10 @@ More information:
 
 If you want to port this extension to a different game engine, feel free to share the included FLA and animation files. Just be sure to keep the respective author's credits intact. 
 
+
+
+--------
+
+This is a Haxe port of the [original AS3 version](https://github.com/Gamua/Starling-Extension-Adobe-Animate).
+
+It is built to work with the [Haxe Starling port (v2)](https://github.com/openfl/starling).

@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project>
+	<!-- NMML reference: https://gist.github.com/1763850 -->
+	<define name="AIR_SDK" value="C:\\_sdks\\air\\air29" />
+	<app swf-version="28"/>
+
+	<meta title="StarlingAnimate" package="starling.animate" version="0.0.1"/>
+	
+	<!-- output -->
+	<app file="StartupWeb" main="StartupWeb" path="bin"/>
+	
+	<window background="#000000" fps="60"
+			width="1260" height="850"
+			fullscreen="true" resizable="true" orientation="landscape"
+			antialiasing="0" vsync="false"/>
+	
+	<source path="src"/>
+
+	<haxelib name="starling"/>
+	<haxelib name="openfl"/>
+	<haxelib name="starling-animate-cc"/>
+
+	
+	<!-- assets -->
+	<icon path="assets/icons/icon_512.png"/>
+	
+	<assets path="../assets" include="*" rename="" />
+	
+	<haxedef name="source-map-content" if="html5"/>
+	<haxeflag name="-dce full"/>
+	<haxeflag if="flash" name="-D advanced-telemetry"></haxeflag>
+	<haxeflag if="debug" name="-D fdb"></haxeflag>
+	<haxeflag if="html5" name="-D webgl"></haxeflag>
+	
+</project>
