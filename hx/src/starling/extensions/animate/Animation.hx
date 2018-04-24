@@ -4,6 +4,7 @@ import haxe.Constraints.Function;
 import starling.animation.IAnimatable;
 import starling.display.DisplayObjectContainer;
 import starling.events.Event;
+import starling.extensions.animate.AnimationAtlasData.SymbolData;
 import starling.extensions.animate.MovieBehavior.MovieFrameAction;
 
 class Animation extends DisplayObjectContainer implements IAnimatable
@@ -21,7 +22,7 @@ class Animation extends DisplayObjectContainer implements IAnimatable
     private var _behavior : MovieBehavior;
     private var _cumulatedTime : Float = 0.0;
     
-    public function new(data : Dynamic, atlas : AnimationAtlas)
+    public function new(data : SymbolData, atlas : AnimationAtlas)
     {
         super();
         _symbol = new Symbol(data, atlas);
@@ -76,11 +77,13 @@ class Animation extends DisplayObjectContainer implements IAnimatable
     
     public function addFrameAction(index : Int, action : MovieFrameAction) : Void
     {
+		if (index == -1) return;
         _behavior.addFrameAction(index, action);
     }
     
     public function removeFrameAction(index : Int, action : MovieFrameAction) : Void
     {
+		if (index == -1) return;
         _behavior.removeFrameAction(index, action);
     }
     

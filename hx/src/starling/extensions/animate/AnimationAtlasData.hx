@@ -51,7 +51,8 @@ typedef SymbolTimelineData =
 typedef LayerData =
 {
 	Layer_name: String,
-	Frames: Array<LayerFrameData>
+	Frames: Array<LayerFrameData>,
+	FrameMap: Map<Int, LayerFrameData>
 }
 
 typedef LayerFrameData =

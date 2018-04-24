@@ -55,6 +55,22 @@ class Symbol extends DisplayObjectContainer
         _loopMode = LoopMode.LOOP;
         
         createLayers();
+		
+		// Create FrameMap caches if don't exist
+		for (layer in data.TIMELINE.LAYERS){
+			if (layer.FrameMap != null) return;
+			
+			var map = new Map();
+			
+			for (i in 0 ... layer.Frames.length){
+				var frame = layer.Frames[i];
+				for (j in 0 ... frame.duration){
+					map.set(i + j, frame);
+				}
+			}
+			
+			layer.FrameMap = map;
+		}
     }
     
     public function reset() : Void
@@ -523,15 +539,7 @@ class Symbol extends DisplayObjectContainer
 		var layer = getLayerData(layerIndex);
 		if (layer == null) return null;
 		
-        for (frame in layer.Frames)
-        {
-            if (frame.index <= frameIndex && frame.index + frame.duration > frameIndex)
-            {
-                return frame;
-            }
-        }
-        
-        return null;
+		return layer.FrameMap.get(frameIndex);
     }
 }
 
