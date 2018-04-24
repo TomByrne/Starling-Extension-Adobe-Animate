@@ -8,6 +8,7 @@ import starling.display.DisplayObjectContainer;
 import starling.display.Image;
 import starling.display.Sprite;
 import starling.extensions.animate.AnimationAtlasData;
+import starling.filters.ColorMatrixFilter;
 import starling.textures.Texture;
 import starling.utils.MathUtil;
 
@@ -35,6 +36,7 @@ class Symbol extends DisplayObjectContainer
     private var _numFrames : Int;
     private var _numLayers : Int;
     private var _frameLabels : Array<Dynamic>;
+    private var _colorTransform:ColorMatrixFilter;
     
     private static var sMatrix : Matrix = new Matrix();
     
@@ -237,11 +239,63 @@ class Symbol extends DisplayObjectContainer
     {
         if (data != null)
         {
-            alpha = (data.mode == "Alpha" || data.mode == "Advanced") ? data.alphaMultiplier : 1.0;
+			var offsetR:Float = (data.redOffset == null ? 0 : data.redOffset);
+			var offsetG:Float = (data.greenOffset == null ? 0 : data.greenOffset);
+			var offsetB:Float = (data.blueOffset == null ? 0 : data.blueOffset);
+			var offsetA:Float = (data.AlphaOffset == null ? 0 : data.AlphaOffset);
+			
+			var multiplierR:Float = (data.RedMultiplier == null ? 1 : data.RedMultiplier);
+			var multiplierG:Float = (data.greenMultiplier == null ? 1 : data.greenMultiplier);
+			var multiplierB:Float = (data.blueMultiplier == null ? 1 : data.blueMultiplier);
+			var multiplierA:Float = (data.alphaMultiplier == null ? 1 : data.alphaMultiplier);
+			
+			if(offsetR == 0 && offsetG == 0 && offsetB == 0 && offsetA == 0 && 
+				multiplierR == 1 && multiplierG == 1 && multiplierB == 1){
+				
+				alpha = multiplierA;
+				if (filter == _colorTransform) filter = null;
+				
+			}else{
+				
+				alpha = 1;
+				
+				if (filter == _colorTransform || filter == null){
+					if (_colorTransform == null) _colorTransform = new ColorMatrixFilter();
+					filter = _colorTransform;
+					
+					var matrix = _colorTransform.matrix;
+					matrix[0] = multiplierR;
+					matrix[4] = offsetR;
+					
+					matrix[6] = multiplierG;
+					matrix[9] = offsetG;
+					
+					matrix[12] = multiplierB;
+					matrix[14] = offsetB;
+					
+					matrix[18] = multiplierA;
+					matrix[19] = offsetA;
+					
+					_colorTransform.matrix = matrix;
+				}
+				
+			}
+			/*switch(data.mode){
+				case "Alpha":
+					filter = null;
+					alpha = data.alphaMultiplier;
+					
+				case "Advanced":
+					if(data.AlphaOffset == 0 && data.blueOffset == 0 && data.greenOffset == 0 && data.
+					filter = null;
+					alpha = data.alphaMultiplier;
+			}
+            alpha = (data.mode == "Alpha" || data.mode == "Advanced") ? data.alphaMultiplier : 1.0;*/
         }
         else
         {
             alpha = 1.0;
+			if (filter == _colorTransform) filter = null;
         }
     }
     
