@@ -4,11 +4,11 @@
 	"license": "BSD",
 	"tags": [ "starling", "adobe", "animate", "flump", "spine", "dragonbones", "GAF" ],
 	"description": "Adobe Animate 'Texture Atlas' export integration (different to 'Sprite Sheet'). For the playback of efficiently packed, 2D, GPU-accelerated animations.",
-	"version": "0.0.1",
+	"version": "{version}",
 	"releasenote": "Initial port",
 	"contributors": [ "tbyrne" ],
 	"dependencies": {
-		"starling": "2.3.1",
+		"starling": "2.2.1"
 	},
 	"classPath": "src"
 }
