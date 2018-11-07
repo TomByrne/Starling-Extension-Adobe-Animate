@@ -16,6 +16,8 @@ copy haxelib.json dist\\temp
 call bat\\repl.bat "{version}" "%Version%" L < "haxelib.json" >"dist\\temp\\haxelib.json"
 copy run.n dist\\temp
 
+copy extraParams.hxml dist\\temp\\extraParams.hxml
+
 pause
 
 powershell.exe -nologo -noprofile -command "& { Add-Type -A 'System.IO.Compression.FileSystem'; [IO.Compression.ZipFile]::CreateFromDirectory('dist\\temp', 'dist\\StarlingAnimateCC %Version%.zip'); }"

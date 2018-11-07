@@ -5,7 +5,7 @@
 	"tags": [ "starling", "adobe", "animate", "flump", "spine", "dragonbones", "GAF" ],
 	"description": "Adobe Animate 'Texture Atlas' export integration (different to 'Sprite Sheet'). For the playback of efficiently packed, 2D, GPU-accelerated animations.",
 	"version": "{version}",
-	"releasenote": "Initial port",
+	"releasenote": "Added -D starlingAnimateCC flag to detect inclusion.",
 	"contributors": [ "tbyrne" ],
 	"dependencies": {
 		"starling": "2.2.1"
