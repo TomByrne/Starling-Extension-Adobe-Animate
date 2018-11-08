@@ -187,8 +187,9 @@ class JsonTextureAtlas extends TextureAtlas
         {
             var node : Dynamic = element.SPRITE;
             region.setTo(node.x, node.y, node.w, node.h);
-            var subTexture : SubTexture = new SubTexture(texture, region, false, null, node.rotated);
-            addSubTexture(node.name, subTexture);
+            //var subTexture : SubTexture = new SubTexture(texture, region, false, null, node.rotated);
+            //addSubTexture(node.name, subTexture);
+			addRegion(node.name, region);
         }
         
         Pool.putRectangle(region);

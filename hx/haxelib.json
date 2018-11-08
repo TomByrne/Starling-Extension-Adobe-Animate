@@ -8,7 +8,7 @@
 	"releasenote": "Added -D starlingAnimateCC flag to detect inclusion.",
 	"contributors": [ "tbyrne" ],
 	"dependencies": {
-		"starling": "2.2.1"
+		"starling": "2.4.1"
 	},
 	"classPath": "src"
 }
